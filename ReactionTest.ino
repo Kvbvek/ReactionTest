@@ -9,15 +9,15 @@
 #define BLUE 10
 
 Adafruit_SSD1306 display(128, 32, &Wire);
-static bool RedLed = true;
-static bool GreenLed = false;
-static bool BlueLed = false;
+bool RedLed = true;
+bool GreenLed = false;
+bool BlueLed = false;
 unsigned int ReactionTime = 0;
 unsigned int ReactionTimeRefer = 0;
-unsigned int TimeLimit = 0;
+unsigned int TimeLimit;
 enum State {WAIT_FOR_TEST,WAIT_FOR_INTERRUPT,TESTED,END};
 State myState = WAIT_FOR_TEST;
-String ReactionStringValue = "0";
+String ReactionStringValue;
 
 void setup() {
   pinMode(RED,OUTPUT);
@@ -55,9 +55,11 @@ void loop() {
         myState = WAIT_FOR_TEST;
       }
       break;
+
     case WAIT_FOR_INTERRUPT:
       myState = WAIT_FOR_INTERRUPT;
       break;
+
     case TESTED:
       detachInterrupt(digitalPinToInterrupt(ACTION_BUTTON));
       display.clearDisplay();
@@ -68,6 +70,7 @@ void loop() {
       display.display();
       myState = END;
       break;
+
     case END:
       myState = END;
       break;
