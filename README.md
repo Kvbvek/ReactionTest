@@ -6,6 +6,7 @@ Components Used
 - Arduino uno board (compatible with Adafruit libraries)
 - OLED Display (Adafruit SSD1306)
 - 3x LEDs (red,green,blue)
+- 3x Resistors for each LED (f.e. 330 Ohm)
 - Push Button
 
 Upon starting the Arduino, the OLED display will show "Reaction Test" indicating the system is ready.
